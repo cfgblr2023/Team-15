@@ -36,7 +36,8 @@ export default function Navbar() {
   function checkcookie() {
     // console.log(arr)
     const token = localStorage.getItem("token");
-    if (token) setCookie(true);
+    if (token !== null) setCookie(true);
+    else setCookie(false);
     const type = localStorage.getItem("type");
     if (type === "volunteer") setIsVolunteer(true);
     if (type === "mentor") setIsMentor(true);
@@ -111,20 +112,18 @@ export default function Navbar() {
               <li>
                 <Link to="../course">Course</Link>
               </li>
-              <li>
-                {isVolunteer && (
-                  <Link className="btn btn-base" to="../raiseFund">
-                    Raise Fund
-                  </Link>
-                )}
-              </li>
-              <li>
-                {isMentor && (
-                  <Link className="btn btn-base" to="../addCourse">
-                    Add course
-                  </Link>
-                )}
-              </li>
+
+              {isVolunteer && (
+                <li>
+                  <Link to="../raiseFund">Raise Fund</Link>
+                </li>
+              )}
+
+              {isMentor && (
+                <li>
+                  (<Link to="../addCourse">Add course</Link>)
+                </li>
+              )}
             </ul>
           </div>
           <div className="nav-right-part nav-right-part-desktop">

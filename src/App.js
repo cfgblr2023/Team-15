@@ -17,6 +17,8 @@ import CarouselExample from "./components/Carousel/CarouselExample";
 
 import MyCourses from "./pages/MyCourses";
 import ApplyNowPage from "./pages/ApplyNowPage";
+import RaiseFund from "./pages/RaiseFund";
+import AddCourse from './pages/AddCourse'
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path="/carousel" element={<CarouselExample />} />
         <Route path="/mycourses" element={<MyCourses />} />
         <Route path="/applynow" element={<ApplyNowPage />} />
+        <Route path="/raiseFund" element={<RaiseFund />} />
+        <Route path="/addCourse" element={<AddCourse />} />
       </Routes>
       <Footer />
     </>
