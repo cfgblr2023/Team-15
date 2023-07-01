@@ -9,6 +9,7 @@ const PaymentRoute=require("./routes/payment");
 const verifiedPayment=require("./routes/verifiedPayment");
 const registeredCourses=require("./routes/registeredcourses");
 const sendMail=require("./routes/mail");
+
 let cors = require("cors");
 
 app.use(bodyParser.json())
@@ -58,6 +59,8 @@ app.use("/api/courses",CourseRoute);
 app.use("/api/auth",authRoute);
 app.use("/api/feedback",FeedbackRoute);
 app.use("/api/fundraiser",require("./routes/fundraiser"));
+app.use("api/events",require("./routes/event"));
+
 app.listen(3000,()=>{
     console.log("Server running on port 3000");
 })

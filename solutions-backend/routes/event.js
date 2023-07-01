@@ -1,7 +1,7 @@
 const router =require("express").Router();
 const bodyParser=require("body-parser");
+const event=require("../models/event");
 const express=require("express");
-const fundraiser = require("../models/fundraiser");
 const app=express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -11,13 +11,13 @@ app.use(bodyParser.urlencoded({
 
 router.post("/", async (req, res) => {
       try {
-        const newFundraiser = new fundraiser ({
-            orgName:req.body.orgName,
-            email:req.body.email,
-            Amount:req.body.Amount,
-            contact:req.body.contact
+        const newevent = new event ({
+            EventName:req.body.EventName,
+            Date:req.body.Date,
+            Desc:req.body.Amount,
+            location:req.body.contact
         });
-        const freshfundraiser = await newFundraiser.save();
+        const freshevent = await newevent.save();
   
         res.send("created sucessfully");
       } catch (err) {
@@ -27,8 +27,8 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/",(req,res)=>{
-  fundraiser.find()
-  .then((fundraiser) => res.json(fundraiser))
+  event.find()
+  .then((event) => res.json(event))
   .catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -50,4 +50,3 @@ router.get("/",(req,res)=>{
 
 
 module.exports = router;
-
