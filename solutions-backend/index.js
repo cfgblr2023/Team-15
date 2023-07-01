@@ -60,6 +60,8 @@ app.use("/api/auth",authRoute);
 app.use("/api/feedback",FeedbackRoute);
 app.use("/api/fundraiser",require("./routes/fundraiser"));
 app.use("api/events",require("./routes/event"));
+app.use("/api/schools",require("./routes/school"));
+app.use("/api/monetory",require("./routes/monetory"));
 
 app.listen(3000,()=>{
     console.log("Server running on port 3000");
