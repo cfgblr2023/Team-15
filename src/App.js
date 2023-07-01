@@ -19,6 +19,7 @@ import MyCourses from "./pages/MyCourses";
 import ApplyNowPage from "./pages/ApplyNowPage";
 import RaiseFund from "./pages/RaiseFund";
 import AddCourse from './pages/AddCourse'
+import WebRtcPage from "./pages/WebRtc";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/applynow" element={<ApplyNowPage />} />
         <Route path="/raiseFund" element={<RaiseFund />} />
         <Route path="/addCourse" element={<AddCourse />} />
+        <Route path="/webRTC" element={<WebRtcPage />} />
       </Routes>
       <Footer />
     </>

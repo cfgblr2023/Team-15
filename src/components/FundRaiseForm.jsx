@@ -12,13 +12,13 @@ const RaiseFundForm = () => {
   const formik = useFormik({
     initialValues: {
       orgName: "",
-      amount: "",
+      Amount: "",
       contact: "",
       email: "",
     },
     validationSchema: Yup.object({
       orgName: Yup.string().required("Organization name must be entered"),
-      amount: Yup.number().required("Amount must be entered"),
+      Amount: Yup.number().required("Amount must be entered"),
       contact: Yup.string().required("Contact must be entered"),
       email: Yup.string().email("Invalid email").required("Email is required"),
     }),
@@ -46,20 +46,15 @@ const RaiseFundForm = () => {
     <>
       <div className="signup-page-area pd-top-120 pd-bottom-120">
         <div className="container">
-            <button onClick={toggleForm} >Add</button>
+          <button onClick={toggleForm}>Add</button>
           {showForm && (
             <div className="row justify-content-center">
               <div className="col-xl-6 col-lg-7">
                 <form className="signin-inner" onSubmit={formik.handleSubmit}>
                   <div className="row">
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.orgName && formik.touched.orgName
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="orgName">Organization Name</label>
                         <input
                           type="text"
                           placeholder="Organization Name"
@@ -76,36 +71,26 @@ const RaiseFundForm = () => {
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.amount && formik.touched.amount
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="Amount">Amount</label>
                         <input
                           type="number"
                           placeholder="Amount"
-                          name="amount"
+                          name="Amount"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.amount}
+                          value={formik.values.Amount}
                         />
                       </div>
-                      {formik.errors.amount && formik.touched.amount && (
+                      {formik.errors.Amount && formik.touched.Amount && (
                         <div className="error-message">
-                          {formik.errors.amount}
+                          {formik.errors.Amount}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.contact && formik.touched.contact
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="contact">Contact</label>
                         <input
                           type="text"
                           placeholder="Contact"
@@ -122,13 +107,8 @@ const RaiseFundForm = () => {
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.email && formik.touched.email
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="email">Email</label>
                         <input
                           type="text"
                           placeholder="Email"
