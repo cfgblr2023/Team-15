@@ -23,7 +23,8 @@ router.post("/", async (req, res) => {
             tags:req.body.tags,
             instructor:req.body.instructor,
             free:req.body.free,
-            video:req.body.video
+            video:req.body.video,
+            address:req.body.address
         });
         const freshcourse = await newcourse.save();
   

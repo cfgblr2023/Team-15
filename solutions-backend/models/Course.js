@@ -48,6 +48,10 @@ const CourseSchema=new mongoose.Schema({
     video:{
         type:String,
         required:true
+    },
+    address:{
+        type:String,
+        required:true
     }
 
 });
