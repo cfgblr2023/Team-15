@@ -52,8 +52,12 @@ export default function Signup() {
         })
           .then((response) => response.json())
           .then((data) => {
+            localStorage.setItem("token",data.token)
+            localStorage.setItem("email",data.email)
+            localStorage.setItem("type",data.role)
             document.cookie = `token=${data.token}; path=/;`;
             document.cookie = `email=${data.email}; path=/;`;
+            document.cookie = `type=${data.role}; path=/;`;
             navigate("../");
           });
       }

@@ -25,6 +25,8 @@ const divStyle = {
 export default function Navbar() {
   const [isCookie, setCookie] = useState(false);
   const [Isdrawer, setdrawer] = useState(false);
+  const [isMentor, setIsMentor] = useState(false);
+  const [isVolunteer, setIsVolunteer] = useState(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -32,34 +34,32 @@ export default function Navbar() {
   }, [isCookie]);
 
   function checkcookie() {
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      if (c.substring(0, 5) === "token") {
-        setCookie(true);
-        return;
-      }
-    }
-    setCookie(false);
+    // console.log(arr)
+    const token = localStorage.getItem("token");
+    if (token) setCookie(true);
+    const type = localStorage.getItem("type");
+    if (type === "volunteer") setIsVolunteer(true);
+    if (type === "mentor") setIsMentor(true);
   }
 
-  function getcartproducts() {
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      if (c.substring(1, 5) === "cart") {
-        return JSON.parse(c.substring(6)).length;
-      }
-    }
-    return 0;
-  }
+  // const cookie=JSON.parse(ca);
+  // console.log(cookie)
+  //   for (let i = 0; i < ca.length; i++) {
+  //     let c = ca[i];
+  //     if (c.substring(0, 5) === "token") {
+  //       setCookie(true);
+  //       return;
+  //     }
+  //   }
+  //   setCookie(false);
+  // }
 
   function handlelogout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "type=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    localStorage.clear();
     checkcookie();
     navigate("../");
   }
@@ -102,10 +102,7 @@ export default function Navbar() {
               />
             </Link>
           </div>
-          {/* <div className="nav-right-part nav-right-part-mobile">
-                        <a className="signin-btn" href="signin">Sign In</a>
-                        <a className="btn btn-base" href="signup">Sign Up</a>
-                    </div> */}
+
           <div className="collapse navbar-collapse" id="edumint_main_menu">
             <ul className="navbar-nav menu-open">
               <li>
@@ -113,6 +110,20 @@ export default function Navbar() {
               </li>
               <li>
                 <Link to="../course">Course</Link>
+              </li>
+              <li>
+                {isVolunteer && (
+                  <Link className="btn btn-base" to="../raiseFund">
+                    Raise Fund
+                  </Link>
+                )}
+              </li>
+              <li>
+                {isMentor && (
+                  <Link className="btn btn-base" to="../addCourse">
+                    Add course
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
@@ -139,15 +150,6 @@ export default function Navbar() {
                 </Link>
               </>
             )}
-
-            <IconButton
-              aria-label="cart"
-              href={isCookie ? "../cart" : "../signin"}
-            >
-              <StyledBadge badgeContent={getcartproducts()} color="success">
-                <ShoppingCartIcon />
-              </StyledBadge>
-            </IconButton>
           </div>
         </div>
       </nav>
@@ -173,21 +175,6 @@ export default function Navbar() {
           <ListItem disablePadding>
             <ListItemButton>
               <Link to="../course">Course</Link>
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <Link to="../about">About us</Link>
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <Link to="../contact">Contact Us</Link>
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <Link to="../applynow">Apply Now</Link>
             </ListItemButton>
           </ListItem>
           <Divider />
