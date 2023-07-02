@@ -19,4 +19,4 @@ const nonmonetory=new mongoose.Schema({
     }
 });
 
-module.exports=mongoose.model("fundraiser",FeedbackSchema);
+module.exports=mongoose.model("nonmonitory",nonmonetory);
