@@ -97,7 +97,7 @@ export default function Navbar() {
           <div className="logo">
             <Link to="../">
               <img
-                src={require("../assets/img/header-logo.jpg")}
+                src={require("../assets/img/logofinal.jpg")}
                 width="50px"
                 alt="img"
               />

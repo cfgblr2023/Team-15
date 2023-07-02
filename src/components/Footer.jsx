@@ -6,7 +6,7 @@ export default function Footer() {
           <div className="container">
             <div className="row">
               <div className="col-lg-3 col-md-6">
-                <img src={require("../assets/img/header-logo.jpg")} alt="img" />
+                <img src={require("../assets/img/logofinal.jpg")} alt="img" />
               </div>
               <div className="col-lg-3 col-md-6">
                 <div className="widget widget_contact">
