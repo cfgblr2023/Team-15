@@ -24,7 +24,15 @@ export default function CourseDetails(props) {
     checkcart();
   }, []);
   useEffect(() => {
-    getTranscript();
+    
+      axios.post("http://localhost:3000/api/transcript",{url:course?.video}).then((res) => {
+        console.log(res.data);
+        setTransscript(
+          res.data.transcription.results.channels[0].alternatives[0].transcript
+        );
+      });
+    
+    
   }, [course?.video]);
 
   //   useEffect(() => {
