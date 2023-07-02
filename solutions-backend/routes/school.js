@@ -14,8 +14,8 @@ router.post("/", async (req, res) => {
         const newschool = new school ({
             name:req.body.EventName,
             poi:req.body.Date,
-            email:req.body.Amount,
-            location:req.body.contact
+            email:req.body.email,
+            location:req.body.location
         });
         const freshschool = await newschool.save();
   

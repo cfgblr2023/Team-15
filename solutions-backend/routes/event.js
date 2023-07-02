@@ -14,8 +14,8 @@ router.post("/", async (req, res) => {
         const newevent = new event ({
             EventName:req.body.EventName,
             Date:req.body.Date,
-            Desc:req.body.Amount,
-            location:req.body.contact
+            Desc:req.body.Desc,
+            location:req.body.location,
         });
         const freshevent = await newevent.save();
   
