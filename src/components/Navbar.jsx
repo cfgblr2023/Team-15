@@ -114,9 +114,21 @@ export default function Navbar() {
               </li>
 
               {isVolunteer && (
+                <>
                 <li>
                   <Link to="../raiseFund">Raise Fund</Link>
                 </li>
+                <li>
+                  <Link to="../eventOrg">Event Organise</Link>
+                </li>
+                <li>
+                  <Link to="../tieUp">Tie Ups</Link>
+                </li>
+                <li>
+                  <Link to="../collectStuff">Collect Non-Monetary Items</Link>
+                </li>
+                </>
+                
               )}
 
               {isMentor && (

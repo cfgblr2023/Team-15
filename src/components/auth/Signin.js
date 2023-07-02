@@ -23,6 +23,7 @@ export default function Signin() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         localStorage.setItem("token", data.token);
         localStorage.setItem("email", data.email);
         localStorage.setItem("type", data.role);

@@ -20,6 +20,10 @@ import ApplyNowPage from "./pages/ApplyNowPage";
 import RaiseFund from "./pages/RaiseFund";
 import AddCourse from './pages/AddCourse'
 import WebRtcPage from "./pages/WebRtc";
+import EventOrg from "./EventOrg";
+import CollectStuff from "./pages/CollectStuff";
+import TieUp from "./pages/TieUp";
+
 
 function App() {
   return (
@@ -38,6 +42,9 @@ function App() {
         <Route path="/raiseFund" element={<RaiseFund />} />
         <Route path="/addCourse" element={<AddCourse />} />
         <Route path="/webRTC" element={<WebRtcPage />} />
+        <Route path="/eventOrg" element={<EventOrg/>} />
+        <Route path="/collectStuff" element={<CollectStuff/>} />
+        <Route path="/tieUp" element={<TieUp/>}/>
       </Routes>
       <Footer />
     </>

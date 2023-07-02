@@ -6,25 +6,25 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../components/auth/validate.css";
 
-const RaiseFundForm = () => {
+const CollectStuff = () => {
   const [showForm, setShowForm] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      orgName: "",
-      amount: "",
-      contact: "",
+      item: "",
+      quantity: "",
+      name: "",
       email: "",
     },
     validationSchema: Yup.object({
-      orgName: Yup.string().required("Organization name must be entered"),
-      amount: Yup.number().required("Amount must be entered"),
-      contact: Yup.string().required("Contact must be entered"),
+      item: Yup.string().required("Item name must be entered"),
+      quantity: Yup.number().required("Quantity must be entered"),
+      name: Yup.string().required("Name must be entered"),
       email: Yup.string().email("Invalid email").required("Email is required"),
     }),
     onSubmit: (values) => {
       axios
-        .post("http://localhost:3000/api/fundraiser/", values)
+        .post("http://localhost:3000/api/monetory/", values)
         .then((response) => {
           console.log("POST request successful:", response.data);
           toast.success("Form submitted successfully");
@@ -51,82 +51,62 @@ const RaiseFundForm = () => {
                 <form className="signin-inner" onSubmit={formik.handleSubmit}>
                   <div className="row">
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.orgName && formik.touched.orgName
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="item">Item</label>
                         <input
                           type="text"
-                          placeholder="Organization Name"
-                          name="orgName"
+                          placeholder="Item"
+                          name="item"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.orgName}
+                          value={formik.values.item}
                         />
                       </div>
-                      {formik.errors.orgName && formik.touched.orgName && (
+                      {formik.errors.item && formik.touched.item && (
                         <div className="error-message">
-                          {formik.errors.orgName}
+                          {formik.errors.item}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.amount && formik.touched.amount
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="quantity">Quantity</label>
                         <input
                           type="number"
-                          placeholder="Amount"
-                          name="amount"
+                          placeholder="Quantity"
+                          name="quantity"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.amount}
+                          value={formik.values.quantity}
                         />
                       </div>
-                      {formik.errors.amount && formik.touched.amount && (
+                      {formik.errors.quantity && formik.touched.quantity && (
                         <div className="error-message">
-                          {formik.errors.amount}
+                          {formik.errors.quantity}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.contact && formik.touched.contact
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="name">Name</label>
                         <input
                           type="text"
-                          placeholder="Contact"
-                          name="contact"
+                          placeholder="Name"
+                          name="name"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.contact}
+                          value={formik.values.name}
                         />
                       </div>
-                      {formik.errors.contact && formik.touched.contact && (
+                      {formik.errors.name && formik.touched.name && (
                         <div className="error-message">
-                          {formik.errors.contact}
+                          {formik.errors.name}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.email && formik.touched.email
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="email">Email</label>
                         <input
                           type="text"
                           placeholder="Email"
@@ -159,4 +139,4 @@ const RaiseFundForm = () => {
   );
 };
 
-export default RaiseFundForm;
+export default CollectStuff;

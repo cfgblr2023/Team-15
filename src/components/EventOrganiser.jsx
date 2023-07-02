@@ -6,25 +6,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../components/auth/validate.css";
 
-const RaiseFundForm = () => {
+const EventOrganiser = () => {
   const [showForm, setShowForm] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      orgName: "",
-      amount: "",
-      contact: "",
-      email: "",
+      EventName: "",
+      Date: "",
+      Desc: "",
+      location: "",
     },
     validationSchema: Yup.object({
-      orgName: Yup.string().required("Organization name must be entered"),
-      amount: Yup.number().required("Amount must be entered"),
-      contact: Yup.string().required("Contact must be entered"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
+      EventName: Yup.string().required("Organization name must be entered"),
+      Date: Yup.date().required("Date must be entered"),
+      Desc: Yup.string().required("Descrip must be entered"),
+      location: Yup.string().required("location is required"),
     }),
     onSubmit: (values) => {
+      values.Date=values.Date.toString();
       axios
-        .post("http://localhost:3000/api/fundraiser/", values)
+        .post("http://localhost:3000/api/events", values)
         .then((response) => {
           console.log("POST request successful:", response.data);
           // Handle the response as needed
@@ -46,101 +47,81 @@ const RaiseFundForm = () => {
     <>
       <div className="signup-page-area pd-top-120 pd-bottom-120">
         <div className="container">
-            <button onClick={toggleForm} >Add</button>
+          <button onClick={toggleForm}>Add</button>
           {showForm && (
             <div className="row justify-content-center">
               <div className="col-xl-6 col-lg-7">
                 <form className="signin-inner" onSubmit={formik.handleSubmit}>
                   <div className="row">
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.orgName && formik.touched.orgName
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="EventName">Organization Name</label>
                         <input
                           type="text"
                           placeholder="Organization Name"
-                          name="orgName"
+                          name="EventName"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.orgName}
+                          value={formik.values.EventName}
                         />
                       </div>
-                      {formik.errors.orgName && formik.touched.orgName && (
+                      {formik.errors.EventName && formik.touched.EventName && (
                         <div className="error-message">
-                          {formik.errors.orgName}
+                          {formik.errors.EventName}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.amount && formik.touched.amount
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="Date">Date</label>
                         <input
-                          type="number"
-                          placeholder="Amount"
-                          name="amount"
+                          type="Date"
+                          placeholder="Date"
+                          name="Date"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.amount}
+                          value={formik.values.Date}
                         />
                       </div>
-                      {formik.errors.amount && formik.touched.amount && (
+                      {formik.errors.Date && formik.touched.Date && (
                         <div className="error-message">
-                          {formik.errors.amount}
+                          {formik.errors.Date}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.contact && formik.touched.contact
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="Description">Desc</label>
                         <input
                           type="text"
-                          placeholder="Contact"
-                          name="contact"
+                          placeholder="Description"
+                          name="Desc"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.contact}
+                          value={formik.values.Desc}
                         />
                       </div>
-                      {formik.errors.contact && formik.touched.contact && (
+                      {formik.errors.Desc && formik.touched.Desc && (
                         <div className="error-message">
-                          {formik.errors.contact}
+                          {formik.errors.Desc}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <div
-                        className={`single-input-inner ${
-                          formik.errors.email && formik.touched.email
-                            ? "is-invalid"
-                            : ""
-                        }`}
-                      >
+                      <div className="single-input-inner">
+                        <label htmlFor="location">location</label>
                         <input
                           type="text"
-                          placeholder="Email"
-                          name="email"
+                          placeholder="location"
+                          name="location"
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
-                          value={formik.values.email}
+                          value={formik.values.location}
                         />
                       </div>
-                      {formik.errors.email && formik.touched.email && (
+                      {formik.errors.location && formik.touched.location && (
                         <div className="error-message">
-                          {formik.errors.email}
+                          {formik.errors.location}
                         </div>
                       )}
                     </div>
@@ -157,8 +138,9 @@ const RaiseFundForm = () => {
         </div>
         <ToastContainer />
       </div>
+      
     </>
   );
 };
 
-export default RaiseFundForm;
+export default EventOrganiser;
