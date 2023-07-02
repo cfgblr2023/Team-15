@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({
 router.post("/", async (req, res) => {
       try {
         const newschool = new school ({
-            name:req.body.EventName,
-            poi:req.body.Date,
+            name:req.body.name,
+            poi:req.body.poi,
             email:req.body.email,
             location:req.body.location
         });
